@@ -55,30 +55,30 @@ const SettingsScreen = () => {
   );
 };
 
+const Root = createStackNavigator();
+const Main = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
+const TabStack = () => {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Profile" component={ProfileScreen} />
+    </Tab.Navigator>
+  );
+};
+
+const MainNav = () => {
+  return (
+    <Main.Navigator>
+      <Main.Screen name="HomeTabs" component={TabStack} />
+      <Main.Screen name="Settings" component={SettingsScreen} />
+    </Main.Navigator>
+  );
+};
+
 export default function App() {
   const [text, setText] = React.useState("");
-
-  const Root = createStackNavigator();
-  const Main = createStackNavigator();
-  const Tab = createBottomTabNavigator();
-
-  const TabStack = () => {
-    return (
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Profile" component={ProfileScreen} />
-      </Tab.Navigator>
-    );
-  };
-
-  const MainNav = () => {
-    return (
-      <Main.Navigator>
-        <Main.Screen name="HomeTabs" component={TabStack} />
-        <Main.Screen name="Settings" component={SettingsScreen} />
-      </Main.Navigator>
-    );
-  };
 
   return (
     <AppContext.Provider value={{ text, setText }}>
